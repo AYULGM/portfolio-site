@@ -1,0 +1,8 @@
+body {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 영문에만 적용할 폰트 */
+.font-en {
+  font-family: "Open Sans", sans-serif;
+}
