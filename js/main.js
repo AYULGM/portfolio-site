@@ -73,3 +73,69 @@ imageCloseBtn.addEventListener('click', function () {
     imageModal.style.display = 'none';
 
 });
+
+// 모달 바깥 영역 클릭 시 닫기
+modal.addEventListener('click', function (e) { // e: 이벤트 발생 시 이벤트 객체가 전달됨
+  console.log(e.target); // 현재 이벤트가 발생한 대상(사용자가 실제 클릭한 가장 안쪽 요소)
+  console.log(e.currentTarget); // 이벤트가 바인딩된 요소 (현재 여기서는 modal을 의미 -> <div id='modal'>) , this와 동일
+  
+  if (e.target === e.currentTarget) { // 이벤트 리스너가 붙은 요소 그 자체를 클릭한 경우만 실행
+    modal.style.display = 'none';
+  }
+});
+imageModal.addEventListener('click', function (e) {
+    if (e.target === e.currentTarget) {
+    imageModal.style.display = 'none';
+  }
+});
+// ESC 키로 닫기
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    modal.style.display = 'none';
+    imageModal.style.display = 'none';
+  }
+})
+
+// 현재 연도 표시
+// 날짜 정보를 가진 JS의 Date 객체를 활용 (Date객체의 getFullYear 메소드)
+console.log(new Date().getFullYear());
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear();
+
+// 페이지 최상단으로 이동
+const toTopEl = document.querySelector('#toTop');
+// Quiz: visual 섹션 애니메이션 넣고/빼기
+// const visualSpanEls = document.querySelectorAll('.animate-flash');
+const visualSpanEls = document.querySelectorAll('.visual h1 span');
+console.log(visualSpanEls);
+
+
+// 페이지에 스크롤 이벤트 감지를 추가!
+// 브라우저는 문서 전체의 스크롤을 window 기준으로 처리 (항상 우리는 document 앞에 window.을 생략해 왔음)
+// document에 붙이면 일부 브라우저에서는 동작 안 함)
+// window: 브라우저 창 객체
+window.addEventListener('scroll', function () {
+  // console.log(window.scrollY); // y축 스크롤 위치
+
+  // Quiz: 페이지 스크롤 위치가 
+  // 500px을 넘으면 요소를 보이고
+  // 500px을 넘지 않으면 요소 숨기기!
+  if (window.scrollY > 500) {
+    toTopEl.style.opacity = '1';
+    toTopEl.style.transform = 'translateX(0)';
+
+    // visual 섹션 애니메이션 클래스 빼기
+    visualSpanEls.forEach(function (visualSpan) {
+      visualSpan.classList.remove('animate-flash');
+    });
+  } else {
+    toTopEl.style.opacity = '0';
+    toTopEl.style.transform = 'translateX(100px)';
+
+    // visual 섹션 애니메이션 클래스 넣기
+    visualSpanEls.forEach(function (visualSpan) {
+      visualSpan.classList.add('animate-flash');
+    });
+  }
+});
+
