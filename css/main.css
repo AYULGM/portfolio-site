@@ -181,6 +181,17 @@ header nav ul li a:hover::after {
   /* 호버 시 밑줄이 완전히 나타나도록 100%f로 설정 */
 }
 
+/* 햄버거 버튼 (처음엔 안나오다가 모바일 화면에서 나오게) */
+header .btn-hamburger{
+  display: none;
+}
+header .btn-hamburger .material-symbols-outlined {
+  font-size: 40px;
+  /* 수직 정렬 맞추기, display:block , line-height 둘 중에 뭘써도 상관없음 */
+  /* display: block; */
+  line-height: 60px;
+}
+
 /* VISUAL */
 .visual {
   /* (중요)
@@ -590,6 +601,115 @@ footer .copyright {
   line-height: 42px;
 }
 
+/* 반응형 스타일 */
+@media screen and (max-width: 767px) {
+  /* 모바일에서는 화면의 80%만 차지하도록 */
+  .inner {
+    width: 80%;
+  }
+
+  .title {
+    font-size: 30px;
+    margin-bottom: 24px;
+  }
+  .title::after {
+    width: 60px;
+  }
+
+  header .btn-hamburger{
+    display: block;
+  }
+
+  header nav {
+    background-color: #fff8e8;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%; 
+    /* height: 100%; */
+    /* display속성은 animation이 no 라서 height로 한다. */
+    height: 0;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+  header nav.active {
+    /* active 클래스가 추가되면 100%로 */
+    height: 100%;
+  }
+
+  header nav ul {
+    /* 1) ul 태그를 원래 보여짐 특성인 블록으로 원복 또는 flex 방향 바꾸기 , 둘 중에 뭘 써도 상관X */
+    /* display: block; */
+    flex-direction: column;
+    padding-top: 60px;
+  }
+  header nav ul li {
+    padding: 10px 80px;
+    font-size: 30px;
+  }
+  header nav ul li a {
+    transition: 0.5s;
+  }
+  header nav ul li a:hover {
+    letter-spacing: 10px;
+  }
+
+  .visual > .inner {
+    font-size: 30px;
+  }
+  .visual > .inner .mobile-lf {
+    display: inline !important;
+  }
+
+  .about {
+    padding: 100px 0;
+  }
+  .about .about__wrapper {
+    flex-direction: column;
+  }
+  .about .about__wrapper .about__img {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .about .about__wrapper .about__text {
+    width: 100%;
+    text-align: center;
+  }
+
+  .skill {
+    padding: 100px 0;
+  }
+  .project {
+    padding: 100px 0;
+  }
+  .project .port {
+    flex-direction: column;
+    margin: 40px 0;
+  }
+
+  .project .port .port__img,
+  .project .port .port__text {
+    width: 100%;
+  }
+  .project .port .port__text {
+    padding: 20px 0 0;
+  }
+  .project .port .btn-group {
+    margin-top: 20px;
+  }
+
+  .contact {
+    padding: 100px 0;
+  }
+
+  #modal .modal-content,
+  #imageModal .modal-content {
+    width: 80%;
+  }
+  #imageModal .modal-body img {
+    width: 100%;
+  }
+}
 
 /* 애니메이션 정의는 맨 마지막에 */
 @keyframes flash {

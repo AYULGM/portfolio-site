@@ -139,3 +139,24 @@ window.addEventListener('scroll', function () {
   }
 });
 
+// 모바일용 메뉴
+const hamburgerBtn = document.querySelector('.btn-hamburger');
+const navEl = document.querySelector('header nav');
+const menuItems = document.querySelectorAll('header nav ul li a') // All을 안붙이면 li 태그중 가장 첫번째 a태그만 가져옴
+
+hamburgerBtn.addEventListener('click' , function () {
+  navEl.classList.toggle('active');
+});
+
+menuItems.forEach(function (menuItem) {
+  menuItem.addEventListener('click' , function () {
+    navEl.classList.remove('active');
+  });
+});
+// forEach 문이 어렵다면..... 일반 for문 사용
+// for (let i = 0; i < menuItems.length; i++) {
+//   menuItem[i].addEventListener('click' , function () {
+//     navEl.classList.remove('active');
+// });
+// }
+
